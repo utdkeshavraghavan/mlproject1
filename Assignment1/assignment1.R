@@ -3,6 +3,14 @@
 #Prof. Gity Karami
 #2/21/2023
 
+#Importing libraries needed for Assignment 1 here:
+library(ggplot2)
+library(sampling)
+library(scatterplot3d)
+library(Matrix)
+library(arules)
+
+
 #Question 1: 
 
 #There are 12 data attribute Types (Age, Sex, ChestPain, RestingBP, Cholestorol, FastingBS, RestingECG, 
@@ -17,14 +25,14 @@
 
 
 data <- read.csv("heart.csv")
-library(ggplot2)
-library(sampling)
-library(scatterplot3d)
-library(Matrix)
-library(arules)
+
+#Checking if any data plots are not unique or do not have a complete row.
+#If it doesn't have a clean data set, then remove the row.
+clean.data <- unique(data[complete.cases(data),])
+summary(clean.data)
+
+ggplot(clean.data, aes(x = clean.data$Age,y=clean.data$Sex, color=clean.data$ChestPainType)) + geom_point()
 
 #Writing to a new dataset for cleaning up
-write.table(data, file="mydata-file.csv", sep=",")
-
-
+write.table(clean.data, file="mydata-file.csv", sep=",")
 
