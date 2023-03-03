@@ -25,9 +25,10 @@ library(arules)
 
 
 data <- read.csv("heart.csv")
-
 #Checking if any data plots are not unique or do not have a complete row.
 #If it doesn't have a clean data set, then remove the row.
+
+
 clean.data <- unique(data[complete.cases(data),])
 summary(clean.data)
 
